@@ -1,5 +1,5 @@
 # ArticlePoster
-免费的Typecho文章海报插件，基于GD库
+免费的Typecho文章海报插件，基于GD库，使用效果欢迎前往 -> [我的博客](https://www.moleft.cn)
 # 安装说明
 1.将插件上传到**/usr/plugins/**，并重命名为**ArticlePoster**
 2.修改post.php，在合适的位置加入挂载点
@@ -22,8 +22,6 @@ $('[data-event=\'poster-download\']').on('click', function(){
 	download_poster();
 });
 ```
-# 海报演示
-![MoLeft原创](https://www.moleft.cn/usr/plugins/ArticlePoster/poster/cid-53.png)
 # 更新日志
 2020-05-14更新说明：
 * 新增本地节点，可以自己魔改了
