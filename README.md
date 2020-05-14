@@ -1,11 +1,29 @@
 # ArticlePoster
 免费的Typecho文章海报插件，基于GD库
-# 特色功能
-1.全过程使用GD库生成海报，所以说不用担心排版错乱。
-2.生成海报后保存到插件目录下的**poster**文件夹，节省第二次生成时间。
-3.使用必应每日一图作为头图，每天的文章都有不同的新鲜感。
-4.支持自定义按钮样式，方便同一主题样式，不会突兀。
-5.推荐使用[Cuckoo](https://github.com/bhaoo/cuckoo)主题
+# 安装说明
+1.将插件上传到**/usr/plugins/**，并重命名为**ArticlePoster**
+2.修改post.php，在合适的位置加入挂载点
+```php
+<?php ArticlePoster_Plugin::button($this->cid); ?>
+```
+3.在后台插件设置填写好信息，一定要填**自定义分享按钮样式**，并且在class里面加入**article-poster-button**
+4.如果你的模板没有引入jquery或者上述过程都设置好了点击按钮无响应，可以开启加载jquery
+5.修改图标部分可以找到`/usr/plugins/ArticlePoster/js/core.js`，修改注释部分图标样式
+# pjax适配
+自1.0.6之后重新调整对于pjax的适配方案，如果主题有pjax回调可以直接填下以下代码，如果没有那么推荐你使用[Cuckoo](https://github.com/bhaoo/cuckoo)主题
+```js
+$('.article-poster-button').on('click',function(){
+	create_poster();
+});
+$('[data-event=\'poster-close\']').on('click', function(){
+	$('.article-poster, .poster-popover-mask, .poster-popover-box').fadeOut()
+});
+$('[data-event=\'poster-download\']').on('click', function(){
+	download_poster();
+});
+```
+# 海报演示
+![MoLeft原创](https://www.moleft.cn/usr/plugins/ArticlePoster/poster/cid-53.png)
 # 更新日志
 2020-05-14更新说明：
 * 新增本地节点，可以自己魔改了
@@ -50,27 +68,3 @@
 * 支持自定义引入jquery
 * 支持自定义按钮样式
 * 海报默认保存到本地
-# 安装说明
-1.将插件上传到**/usr/plugins/**，并重命名为**ArticlePoster**
-2.修改post.php，在合适的位置加入挂载点
-```php
-<?php ArticlePoster_Plugin::button($this->cid); ?>
-```
-3.在后台插件设置填写好信息，一定要填**自定义分享按钮样式**，并且在class里面加入**article-poster-button**
-4.如果你的模板没有引入jquery或者上述过程都设置好了点击按钮无响应，可以开启加载jquery
-5.修改图标部分可以找到`/usr/plugins/ArticlePoster/js/core.js`，修改注释部分图标样式
-# pjax适配
-自1.0.6之后重新调整对于pjax的适配方案，如果主题有pjax回调可以直接填下以下代码，如果没有那么推荐你使用[Cuckoo](https://github.com/bhaoo/cuckoo)主题
-```js
-$('.article-poster-button').on('click',function(){
-	create_poster();
-});
-$('[data-event=\'poster-close\']').on('click', function(){
-	$('.article-poster, .poster-popover-mask, .poster-popover-box').fadeOut()
-});
-$('[data-event=\'poster-download\']').on('click', function(){
-	download_poster();
-});
-```
-# 海报演示
-![MoLeft原创](https://www.moleft.cn/usr/plugins/ArticlePoster/poster/cid-53.png)
