@@ -9,11 +9,11 @@ $('[data-event="poster-download"]').on('click', function(){
 });
 function create_poster(){
 	//下载图标
-	var download_icon = '<i class="mdui-icon mdui-icon-left material-icons">file_download</i>';
+	var download_icon = '<i class="iconfont icontaiji"> </i>';
 	//错误图标
-	var error_icon = '<i class="mdui-icon mdui-icon-left material-icons">error</i>';
+	var error_icon = '<i class="iconfont iconanonymous-full"> </i>';
 	//等待图标
-	var wait_icon = '<i class="mdui-icon mdui-icon-left material-icons">watch_later</i>';
+	var wait_icon = '<i class="iconfont icondengdai"> </i>';
 	var id = $(".article-poster").data("id");
 	if(!id){
     	alert("请刷新页面");
@@ -26,7 +26,7 @@ function create_poster(){
         timeout: 60000,
         dataType: "json",
         beforeSend: function (moleft) {
-           $(".article-poster-button").html(wait_icon+"正在生成...");
+           $(".article-poster-button").html(wait_icon);
 		   $(".article-poster-button").attr("disabled",true);
         },
         success: function(json) {
@@ -34,7 +34,7 @@ function create_poster(){
                 $('.article-poster-images').attr("src", json.data);
                 $(".poster-download").data("url", json.data);
                 $('.article-poster, .poster-popover-mask, .poster-popover-box').fadeIn()
-            	$(".article-poster-button").html(download_icon+"下载海报");
+            	$(".article-poster-button").html(download_icon);
 	    		$(".article-poster-button").attr("disabled",false);
         	}else{
         		if(json.data){
@@ -42,19 +42,19 @@ function create_poster(){
         		}else{
         			alert("网络超时，请重试");
         		}
-            	$(".article-poster-button").html(error_icon+"生成失败");
+            	$(".article-poster-button").html(error_icon);
 	    		$(".article-poster-button").attr("disabled",false);
         	}
         },
         error: function (textStatus) {
         	alert("生成失败，请重试");
-            $(".article-poster-button").html(error_icon+"请重试");
+            $(".article-poster-button").html(error_icon);
 	    	$(".article-poster-button").attr("disabled",false);
         },
         complete: function (XMLHttpRequest,status) {
             if(status == 'timeout') {
             	moleft.abort();
-                $(".article-poster-button").html(error_icon+"网络超时");
+                $(".article-poster-button").html(error_icon);
 	    		$(".article-poster-button").attr("disabled",false);
             }
         }
