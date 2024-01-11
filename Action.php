@@ -108,10 +108,16 @@ class ArticlePoster_Action extends Typecho_Widget implements Widget_Interface_Do
     
     public function export($data = array(), $status = 200)
     {
-        $this->res->throwJson(array(
-            'status' => $status,
-            'data' => $data
-        ));
+        http_response_code($status);
+        header('Content-Type: application/json');
+        $json = json_encode(
+            array(
+                'status' => $status,
+                'data' => $data
+            ),
+            JSON_UNESCAPED_UNICODE
+        );
+        echo $json;
         exit;
     }
     
