@@ -52,14 +52,18 @@ function changeFileSize($size, $dec = 2)
 //文章标题可以有英文
 function replace_title($str)
 {
-    preg_match_all('/[a-zA-Z0-9\x{4e00}-\x{9fff}]+/u', $str, $matches);
+    // 匹配字母、数字、中文字符及常见的英文和中文标点符号
+    preg_match_all('/[a-zA-Z0-9\x{4e00}-\x{9fff}，。、；：“”（）《》？！]+/u', $str, $matches);
     return join('', $matches[0]);
 }
+
 function replace_content($str)
 {
-    preg_match_all('/[\x{4e00}-\x{9fff}]+/u', $str, $matches);
+    // 匹配中文字符及常见的中文标点符号
+    preg_match_all('/[\x{4e00}-\x{9fff}，。、；：“”（）《》？！]+/u', $str, $matches);
     return join('', $matches[0]);
 }
+
 //计算阅读时间
 $read_time = round(mb_strlen($info['artclecont'], 'UTF-8') / 500, 1);
 //处理文章标题
