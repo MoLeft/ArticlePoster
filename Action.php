@@ -3,7 +3,6 @@ class ArticlePoster_Action extends Typecho_Widget implements Widget_Interface_Do
 {
 
     private $db;
-    private $res;
     private $info;
 
     public function __construct($request, $response, $params = NULL)
@@ -13,7 +12,6 @@ class ArticlePoster_Action extends Typecho_Widget implements Widget_Interface_Do
         $this->info['author'] = Typecho_Widget::widget('Widget_Options')->plugin('ArticlePoster')->author;
         $this->info['qq'] = Typecho_Widget::widget('Widget_Options')->plugin('ArticlePoster')->qq;
         $this->db  = Typecho_Db::get();
-        $this->res = new Typecho_Response();
         parent::__construct($request, $response, $params);
         if (method_exists($this, $this->request->type)) {
             call_user_func(array(
