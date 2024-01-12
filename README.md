@@ -4,7 +4,7 @@
 
 # 安装说明
 
-1.将插件上传到**/usr/plugins/**，并重命名为**ArticlePoster**
+1.将插件上传到 /usr/plugins/，并重命名为ArticlePoster
 2.修改post.php，在合适的位置加入挂载点
 
 ```php
@@ -32,6 +32,11 @@ $('[data-event=\'poster-download\']').on('click', function(){
 ```
 
 # 更新日志
+
+2024-01-12更新说明:
+
+* 去除原作者失效的版本检查，兼容typecho1.2
+* 删除部分无用代码
 
 2020-05-14更新说明：
 
